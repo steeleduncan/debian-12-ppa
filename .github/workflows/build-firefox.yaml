@@ -1,0 +1,26 @@
+name: Build Firefox
+
+# TODO
+# - get firefox building within the workflow
+# - export the binaries by committing them to the repo from within the workflow
+# - pin the source revision properly
+# - pin the debian podman parent properly
+# - organise those binaries into a PPA
+
+on:
+  workflow_dispatch:
+
+jobs:
+  linux-tests:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install podman
+      run: sudo apt update && sudo apt dist-upgrade -y && sudo apt install podman -y
+
+    - name Run build within podman
+      working-directory: ${{runner.workspace}}/eyot/src
+      run: podman build .
+     
