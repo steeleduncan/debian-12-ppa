@@ -21,6 +21,6 @@ jobs:
       run: sudo apt update && sudo apt dist-upgrade -y && sudo apt install podman -y
 
     - name: Run build within podman
-      working-directory: ${{runner.workspace}}/debian-12-ppa/src
+      working-directory: ${{runner.workspace}}/debian-12-ppa
       run: podman build .
      
